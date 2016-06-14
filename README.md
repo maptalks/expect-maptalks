@@ -4,6 +4,32 @@
 
 A plugin of expect.js(https://github.com/Automattic/expect.js) for maptalks with assertions for Coordinate/GeoJSON/Layer
 
+## Usage
+
+```bash
+npm install expect-maptalks --save-dev
+```
+
+### with Karma
+Install [karma-expect-maptalks](https://github.com/MapTalks/karma-expect-maptalks)
+```bash
+npm install karma-expect-maptalks --save-dev
+```
+In karma.conf.js, Attention: **always declare expect-maptalks behind expect**
+```javascript
+    frameworks: [
+      'mocha',
+      'expect',
+      'expect-maptalks'
+    ],
+    
+    plugins: [
+      'karma-expect',
+      'karma-expect-maptalks'
+    ],
+```
+
+
 ## Methods
 
 **approx**: asserts that the value is approximately equal or not
