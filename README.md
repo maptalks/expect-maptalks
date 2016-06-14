@@ -64,4 +64,6 @@ expect(v).to.be.painted();
 //a negative x to the left and a positive to the right.
 //a negative y to the top and a positive to the bottom.
 expect(v).to.be.painted(5, 3);
+//assert the point's color is [255, 255, 255]
+expect(v).to.be.painted(5, 3, [255, 255, 255]);
 ```
