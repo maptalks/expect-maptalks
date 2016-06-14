@@ -1,5 +1,6 @@
 'use strict';
-(function (expect, maptalks) {
+
+(function (global, expect) {
 
     function isArray(obj) {
         if (!obj) { return false; }
@@ -60,10 +61,14 @@
             return false;
         }
         for (var i = 0; i < expected.length; i++) {
-            if (isArray(expected[i]) && !eqlArray(val[i], expected[i])) {
-                return false;
-            } else if (val[i] !== expected[i] && !approx(val[i], expected[i])) {
-                return false;
+            if (isArray(expected[i])) {
+                if (!eqlArray(val[i], expected[i])) {
+                    return false;
+                }
+            } else if (val[i] !== expected[i]) {
+                if (!approx(val[i], expected[i])) {
+                    return false;
+                }
             }
         }
         return true;
@@ -147,7 +152,7 @@
 
     expect.Assertion.prototype.painted = function (dx, dy) {
         var expectation = false;
-        if (this.obj instanceof maptalks.Layer) {
+        if (('maptalks' in global) && (this.obj instanceof maptalks.Layer)) {
             expectation = isCenterDrawn(this.obj, dx, dy);
         }
         this.assert(
@@ -157,5 +162,6 @@
             , null);
         return this;
     };
-})(typeof window !== 'undefined' ? window.expect : require('expect.js'), typeof window !== 'undefined' ? window.maptalks : require('maptalks'));
+})(this
+  , ('expect' in this) ? this.expect : require('expect.js'));
 
