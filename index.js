@@ -122,7 +122,7 @@
         return this;
     };
 
-    function isCenterDrawn(layer, dx, dy) {
+    function isCenterDrawn(layer, dx, dy, color) {
         if (!dx) {
             dx = 0;
         }
@@ -138,22 +138,26 @@
             return false;
         }
         var canvas = image.image;
-        return isDrawn(parseInt(size.width) / 2 - image.point.x + dx, parseInt(size.height) / 2 - image.point.y + dy, canvas);
+        return isDrawn(parseInt(size.width) / 2 - image.point.x + dx, parseInt(size.height) / 2 - image.point.y + dy, canvas, color);
     }
 
-    function isDrawn(x, y, canvas) {
+    function isDrawn(x, y, canvas, color) {
         var context = canvas.getContext('2d');
         var imgData = context.getImageData(x, y, 1, 1).data;
         if (imgData[3] > 0) {
+            if (color) {
+                return imgData[0] === color[0] && imgData[1] === color[1] &&
+                    imgData[2] === color[2];
+            }
             return true;
         }
         return false;
     }
 
-    expect.Assertion.prototype.painted = function (dx, dy) {
+    expect.Assertion.prototype.painted = function (dx, dy, color) {
         var expectation = false;
         if (('maptalks' in global) && (this.obj instanceof maptalks.Layer)) {
-            expectation = isCenterDrawn(this.obj, dx, dy);
+            expectation = isCenterDrawn(this.obj, dx, dy, color);
         }
         this.assert(
             expectation
