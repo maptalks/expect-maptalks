@@ -24,7 +24,8 @@ expect({x : 1, y : 1}).to.be.closeTo([1 + 1E-7, 1 - 1E-7]);
 
 ```js
 //true
-expect({ "type": "Point", "coordinates": [0.0, 0.0] }).to.be.eqlGeoJSON({ "type": "Point", "coordinates": [0.000001, 0.000001] });
+expect({ "type": "Point", "coordinates": [0.0, 0.0] })
+    .to.be.eqlGeoJSON({ "type": "Point", "coordinates": [0.000001, 0.000001] });
 ```
 
 **painted**: asserts the given layer is painted in the center with a offset.
