@@ -61,5 +61,7 @@ expect({ "type": "Point", "coordinates": [0.0, 0.0] })
 var v = new maptalks.VectorLayer('v').addGeometries(geos).addTo(map);
 expect(v).to.be.painted();
 //whether the layer is painted with an offset {x:5, y:3} from the center.
+//a negative x to the left and a positive the the right.
+//a negative y to the top and a positive to the bottom.
 expect(v).to.be.painted(5, 3);
 ```
