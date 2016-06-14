@@ -1,0 +1,10 @@
+{
+  "extends": "maptalks",
+  "globals": {
+      "describe":true,
+      "it":true,
+      "expect":true
+  },
+  "rules": {
+  }
+}
