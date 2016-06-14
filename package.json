@@ -20,6 +20,6 @@
   },
   "peerDependencies": {
     "expect.js": "^0.3.1",
-    "maptalks.js" : "^0.3.1"
+    "maptalks" : "^0.3.1"
   }
 }
