@@ -1,6 +1,6 @@
 {
   "name": "expect-maptalks",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A plugin of expect.js(https://github.com/Automattic/expect.js) for maptalks with assertions for Coordinate/GeoJSON/Layer",
   "license": "MIT",
   "repository": {
@@ -19,7 +19,7 @@
     "mocha": "^2.4.5"
   },
   "peerDependencies": {
-    "expect.js": "^0.3.1",
-    "maptalks" : "^0.3.1"
+    "expect.js": "^0.x.x",
+    "maptalks" : "^0.x.x"
   }
 }
