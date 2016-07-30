@@ -159,10 +159,11 @@
         if (('maptalks' in global) && (this.obj instanceof maptalks.Layer)) {
             expectation = isCenterDrawn(this.obj, dx, dy, color);
         }
+        var colorMsg = color ? ', with color [' + color.join() + ']' : '';
         this.assert(
             expectation
-            , function () { return 'expected layer to be painted in center with offset (' + dx + ',' + dy + ') '; }
-            , function () { return 'expected layer not to be painted in center with offset (' + dx + ',' + dy + ') '; }
+            , function () { return 'expected layer to be painted in center with offset (' + dx + ',' + dy + ')' + colorMsg; }
+            , function () { return 'expected layer not to be painted in center with offset (' + dx + ',' + dy + ')' + colorMsg; }
             , null);
         return this;
     };
