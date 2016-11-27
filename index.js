@@ -144,26 +144,46 @@
     function isDrawn(x, y, canvas, color) {
         var context = canvas.getContext('2d');
         var imgData = context.getImageData(x, y, 1, 1).data;
+        var expect = false;
+        var msg = null;
         if (imgData[3] > 0) {
             if (color) {
-                return imgData[0] === color[0] && imgData[1] === color[1] &&
-                    imgData[2] === color[2];
+                var expectation = (imgData[0] === color[0] && imgData[1] === color[1] &&
+                    imgData[2] === color[2]);
+                if (!expectation) {
+                    msg = ', expect color [' + color.join() + '] but actual color is [' + [imgData[0], imgData[1], imgData[2]] + ']';
+                } else {
+                    expect = true;
+                }
+            } else {
+                expect = true;
             }
-            return true;
         }
-        return false;
+        return {
+            'expectation' : expect,
+            'error' : msg
+        };
     }
 
     expect.Assertion.prototype.painted = function (dx, dy, color) {
-        var expectation = false;
-        if (('maptalks' in global) && (this.obj instanceof maptalks.Layer)) {
-            expectation = isCenterDrawn(this.obj, dx, dy, color);
+        if (!dx) {
+            dx = 0;
         }
-        var colorMsg = color ? ', with color [' + color.join() + ']' : '';
+        if (!dy) {
+            dy = 0;
+        }
+        var expectation = false;
+        var colorError = '';
+        if (('maptalks' in global) && (this.obj instanceof maptalks.Layer)) {
+            var result = isCenterDrawn(this.obj, dx, dy, color);
+            expectation = result.expectation;
+            colorError = result.error || '';
+        }
+
         this.assert(
             expectation
-            , function () { return 'expected layer to be painted in center with offset (' + dx + ',' + dy + ')' + colorMsg; }
-            , function () { return 'expected layer not to be painted in center with offset (' + dx + ',' + dy + ')' + colorMsg; }
+            , function () { return 'expected layer to be painted in center with offset (' + dx + ',' + dy + ')' + colorError; }
+            , function () { return 'expected layer not to be painted in center with offset (' + dx + ',' + dy + ')' + colorError; }
             , null);
         return this;
     };
