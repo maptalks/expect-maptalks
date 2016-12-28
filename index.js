@@ -174,11 +174,10 @@
         }
         var expectation = false;
         var colorError = '';
-        if (('maptalks' in global) && (this.obj instanceof maptalks.Layer)) {
-            var result = isCenterDrawn(this.obj, dx, dy, color);
-            expectation = result.expectation;
-            colorError = result.error || '';
-        }
+        var result = isCenterDrawn(this.obj, dx, dy, color);
+        expectation = result.expectation;
+        colorError = result.error || '';
+
 
         this.assert(
             expectation
