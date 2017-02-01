@@ -150,8 +150,15 @@
             if (color) {
                 var expectation = (imgData[0] === color[0] && imgData[1] === color[1] &&
                     imgData[2] === color[2]);
+                if (color.length > 3 && expectation) {
+                    expectation = (imgData[3] === color[3]);
+                }
                 if (!expectation) {
-                    msg = ', expect color [' + color.join() + '] but actual color is [' + [imgData[0], imgData[1], imgData[2]] + ']';
+                    var expected = [imgData[0], imgData[1], imgData[2]];
+                    if (color.length > 3) {
+                        expected.push(imgData[3]);
+                    }
+                    msg = ', expect color [' + color.join() + '] but actual color is [' + expected.join() + ']';
                 } else {
                     expect = true;
                 }
