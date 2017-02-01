@@ -1,17 +1,17 @@
 {
   "name": "expect-maptalks",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "A plugin of expect.js(https://github.com/Automattic/expect.js) for maptalks with assertions for Coordinate/GeoJSON/Layer",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/MapTalks/expect-maptalks.git"
   },
-  "main" : "index.js",
+  "main": "index.js",
   "scripts": {
     "lint": "eslint *.js test/**/*.js",
     "test": "./node_modules/.bin/mocha",
-    "pretest" : "npm run lint"
+    "pretest": "npm run lint"
   },
   "devDependencies": {
     "eslint": "^2.4.0",
