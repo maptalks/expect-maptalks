@@ -136,6 +136,9 @@
         if (layer.getMap) {
             size = layer.getMap().getSize();
             var image = layer._getRenderer().getCanvasImage();
+            if (!image) {
+                return false;
+            }
             point = image.point;
             canvas = image.image;
         } else {
