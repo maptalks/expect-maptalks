@@ -54,7 +54,7 @@ expect({ "type": "Point", "coordinates": [0.0, 0.0] })
     .to.be.eqlGeoJSON({ "type": "Point", "coordinates": [0.000001, 0.000001] });
 ```
 
-**painted**: asserts the given layer is painted in the center with a offset.
+**painted**: asserts the given layer or map is painted in the center with a offset.
 
 ```js
 var v = new maptalks.VectorLayer('v').addGeometries(geos).addTo(map);
@@ -66,4 +66,6 @@ expect(v).to.be.painted();
 expect(v).to.be.painted(5, 3);
 //assert the point's color is [255, 255, 255]
 expect(v).to.be.painted(5, 3, [255, 255, 255]);
+//also support map
+expect(map).to.be.painted(5, 3, [255, 255, 255]);
 ```
