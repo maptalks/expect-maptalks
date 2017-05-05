@@ -132,13 +132,22 @@
         if (!layer._getRenderer()) {
             return false;
         }
-        var size = layer.getMap().getSize(),
-            image = layer._getRenderer().getCanvasImage();
-        if (!image) {
+        var size, point, canvas;
+        if (layer.getMap) {
+            size = layer.getMap().getSize();
+            var image = layer._getRenderer().getCanvasImage();
+            point = image.point;
+            canvas = image.image;
+        } else {
+            var map = layer;
+            size = map.getSize();
+            point = { x: 0, y: 0 };
+            canvas = map._getRenderer().canvas;
+        }
+        if (!canvas) {
             return false;
         }
-        var canvas = image.image;
-        return isDrawn(parseInt(size.width) / 2 - image.point.x + dx, parseInt(size.height) / 2 - image.point.y + dy, canvas, color);
+        return isDrawn(parseInt(size.width) / 2 - point.x + dx, parseInt(size.height) / 2 - point.y + dy, canvas, color);
     }
 
     function isDrawn(x, y, canvas, color) {
